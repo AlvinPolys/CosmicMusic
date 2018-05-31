@@ -255,7 +255,7 @@ def req_ensure_py3():
                 pyexec(pycom, 'run.py')
 
         log.critical("Could not find Python 3.5 or higher.  Please run the bot using Python 3.5")
-        bugger_off()
+        
 
 
 def req_ensure_encoding():
@@ -279,7 +279,7 @@ def req_ensure_env():
 
     if os.environ.get('APP_ENV') != 'docker' and not os.path.isdir(b64decode('LmdpdA==').decode('utf-8')):
         log.critical(b64decode('Qm90IHdhc24ndCBpbnN0YWxsZWQgdXNpbmcgR2l0LiBSZWluc3RhbGwgdXNpbmcgaHR0cDovL2JpdC5seS9tdXNpY2JvdGRvY3Mu').decode('utf-8'))
-        bugger_off()
+        
 
     try:
         assert os.path.isdir('config'), 'folder "config" not found'
@@ -289,14 +289,14 @@ def req_ensure_env():
         assert importlib.util.find_spec('musicbot'), "musicbot module is not importable"
     except AssertionError as e:
         log.critical("Failed environment check, %s", e)
-        bugger_off()
+        
 
     try:
         os.mkdir('musicbot-test-folder')
     except Exception:
         log.critical("Current working directory does not seem to be writable")
         log.critical("Please move the bot to a folder that is writable")
-        bugger_off()
+        
     finally:
         rmtree('musicbot-test-folder', True)
 
